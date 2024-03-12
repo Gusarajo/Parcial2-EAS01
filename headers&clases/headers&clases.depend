@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1709668471 source:d:\bid20\gustavo arana\parcial2-eas01\headers&clases\jugadores.cpp
+	"jugadores.h"
+	<iostream>
+	<string>
+
+1710188069 d:\bid20\gustavo arana\parcial2-eas01\headers&clases\jugadores.h
+	<string>
+

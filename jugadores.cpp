@@ -19,9 +19,24 @@ class Jugador{
     Jugador(); 
     Jugador(int vida, int attack, string nombre); 
     
-    void atacar(Jugador &j2); 
+    void atacarJugador(Jugador &j2); 
+    void atacarEnemigo(Enimigo &E1);
 };
+class Enimigo{
+    /*
+        Agrega propiedades para guardar la vida(número entero), ataque(número entero) y nombre del jugador.
+        Agrega una propiedad para guardar el jugador que lo atacó por última vez.
+    */
+   public:
+   int vida, attack;
+   string nombre;
 
+    
+    Enimigo(); 
+    Enimigo(int vida, int attack, string nombre); 
+    
+    void atacarJugador(Jugador &j2); 
+};
 int main()
 {
     srand(time(0));  // Seed para generar valores aleatorios
@@ -37,13 +52,13 @@ int main()
    Jugador j2(100,10,"Carlos");
 
    while(j1.vida > 0 && j2.vida > 0){
-    j1.atacar(j2);
+    j1.atacarJugador(j2);
     if(j2.vida <= 0){
         cout << j1.nombre << " es el ganador" << endl;
         break;
     }
 
-    j2.atacar(j1);
+    j2.atacarJugador(j1);
     if(j1.vida <= 0){
         cout << j2.nombre << " es el ganador" << endl;
         break;
@@ -73,8 +88,27 @@ Jugador::Jugador(int vida, int attack, string nombre){
    this->attack = attack;
    this->nombre = nombre;
 }
+Enimigo::Enimigo(){
+    /*
+        Asignar 100 a hp y 5 a attack como valores default.
+        Asignar 'No definido' al nombre como default.
+    */
+   this->vida = 100;
+   this->attack = 5;
+   this->nombre = "No definido";
+}
 
-void Jugador::atacar(Jugador &j2){
+Enimigo::Enimigo(int vida, int attack, string nombre){
+    /*
+        Asignar los parámetros recibidos a las propiedades del objeto.
+        No se pueden asignar valores negativos a hp y attack.
+        Máximo 200 hp y 20 attack
+    */
+   this->vida = vida;
+   this->attack = attack;
+   this->nombre = nombre;
+}
+void Jugador::atacarJugador(Jugador &j2){
     int ran = rand() % 5;
     if(ran == 0){
         cout << this->nombre << " ataco a " << j2.nombre << " pero fallo, vida restante de " << j2.nombre <<  " = " << j2.vida << endl; 
